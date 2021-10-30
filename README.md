@@ -6,9 +6,9 @@ Small package to help with the use of Environment Variables in Go projects.
 
 ## Usage/Examples
 
-```cmd
+<!--```cmd
 go get github.com/ricdotnet/goenvironmental
-```
+```-->
 
 The main package name is long, so I recommend using an import variable to help manage better.
 ```go
