@@ -7,7 +7,7 @@ Small package to help with the use of Environment Variables in Go projects.
 ## Usage/Examples
 
 ```cmd
-go get github.com/ricdotnet/goenvironmental
+go get github.com/ricdotnet/goenvironmental@master
 ```
 
 The main package name is long, so I recommend using an import variable to help manage better.
