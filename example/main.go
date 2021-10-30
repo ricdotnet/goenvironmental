@@ -6,8 +6,9 @@ import (
 
 func main() {
 	goenv.ParseEnv()
-	println(goenv.EnvVariables["HELLO"])
-	println(goenv.EnvVariables["THIS"])
-	println(goenv.EnvVariables["NUMBERS"])
-	println(goenv.EnvVariables["TEST5"])
+	envs := goenv.EnvVariables
+	println(envs["HELLO"])
+	println(envs["THIS"])
+	println(envs["NUMBERS"])
+	println(envs["TEST5"])
 }
