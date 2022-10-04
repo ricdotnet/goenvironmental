@@ -1,8 +1,6 @@
 package main
 
-import (
-	goenv "github.com/ricdotnet/goenvironmental"
-)
+import goenv "github.com/ricdotnet/goenvironmental"
 
 func main() {
 	goenv.ParseEnv()
@@ -11,4 +9,5 @@ func main() {
 	println(envs["THIS"])
 	println(envs["NUMBERS"])
 	println(envs["TEST5"])
+	println(envs["WITHQUOTES"])
 }

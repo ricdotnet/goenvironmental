@@ -1,35 +1,52 @@
 package goenvironmental
 
 import (
-	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 )
 
 var EnvVariables map[string]string
 
-// ParseEnv reads the contents from .env file
+// ParseEnv reads the contents from .env or other defined file
 // place the .env file on the root folder
-func ParseEnv() {
+func ParseEnv(args ...string) {
 
-	// c will be the content of the .env file in bytes
-	c, err := ioutil.ReadFile(".env")
+	if len(args) > 1 {
+		log.Fatal("ParseEnv accepts one and only one file name")
+		return
+	}
+
+	var fileName = ".env"
+	if len(args) == 1 {
+		fileName = args[0]
+	}
+
+	// envBytes will be the content of the .env file in bytes
+	envBytes, err := os.ReadFile(fileName)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	// generate content from c
-	// then split the content by line
+	// generate a string from envBytes
+	// then split the content by \n into lines
 	// after we have to get key:value pairs and store in a map for later use
 	EnvVariables = make(map[string]string)
-	content := string(c)
-	pairs := strings.Split(content, "\n")
+	rawEnv := string(envBytes)
+	pairs := strings.Split(rawEnv, "\n")
 	for _, pair := range pairs {
 
 		// strings.SplitN splits into a defined number of substrings
 		// this allows us to have '=' in our values but not in keys
-		kV := strings.SplitN(pair, "=", 2)
-		EnvVariables[strings.TrimRight(kV[0], "=")] = kV[1]
+		parts := strings.SplitN(pair, "=", 2)
+		var part = parts[1]
+
+		// in case values have quotation marks we remove them
+		if strings.HasPrefix(part, "\"") && strings.HasSuffix(part, "\"") {
+			part = parts[1][1 : len(parts[1])-1]
+		}
+
+		EnvVariables[strings.TrimRight(parts[0], "=")] = part
 	}
 }
