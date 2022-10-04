@@ -19,16 +19,16 @@ import (
 
 ```go
 func main() {
-// this function starts by parsing all environment variables to a map
-goenv.ParseEnv()
+  // this function starts by parsing all environment variables to a map
+  goenv.ParseEnv()
 
-// to use a variable simply call its name
-var1 := goenv.EnvVariables["NAME"]
+  // to use a variable simply call its name
+  var1 := goenv.EnvVariables["NAME"]
 
-// goenv.EnvVariables is also a long name so we can assign it to a smaller variable
-envs := goenv.EnvVariables
+  // goenv.EnvVariables is also a long name so we can assign it to a smaller variable
+  envs := goenv.EnvVariables
 
-// then we can use
-envs["NAME"]
+  // then we can use
+  envs["NAME"]
 }
 ```
