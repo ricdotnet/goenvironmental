@@ -25,12 +25,11 @@ func ParseEnv() {
 	EnvVariables = make(map[string]string)
 	content := string(c)
 	pairs := strings.Split(content, "\n")
-	for i, pair := range pairs {
+	for _, pair := range pairs {
 
 		// strings.SplitN splits into a defined number of substrings
 		// this allows us to have '=' in our values but not in keys
 		kV := strings.SplitN(pair, "=", 2)
 		EnvVariables[strings.TrimRight(kV[0], "=")] = kV[1]
-		i++
 	}
 }
