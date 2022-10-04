@@ -13,7 +13,7 @@ go get github.com/ricdotnet/goenvironmental@master
 The main package name is long, so I recommend using an import variable to help manage better.
 ```go
 import (
-goenv "github.com/ricdotnet/goenvironmental"
+  goenv "github.com/ricdotnet/goenvironmental"
 )
 ```
 
