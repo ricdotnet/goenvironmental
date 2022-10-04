@@ -1,3 +1,4 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/ricdotnet/goenvironmental)](https://goreportcard.com/report/github.com/ricdotnet/goenvironmental)
 
 # Go Environment Variables
 
