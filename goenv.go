@@ -1,6 +1,7 @@
 package goenvironmental
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -51,8 +52,13 @@ func ParseEnv(args ...string) {
 	}
 }
 
-func Get(key string) string {
+func Get(key string) (string, error) {
 	var value string
 	value = envVariables[key]
-	return value
+
+	if value == "" {
+		return "", fmt.Errorf("%s does not exist", key)
+	}
+
+	return value, nil
 }

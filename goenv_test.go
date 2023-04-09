@@ -7,27 +7,31 @@ import (
 func TestParseEnv(t *testing.T) {
 	ParseEnv(".env")
 
-	if Get("HELLO") != "world" {
+	if s, _ := Get("HELLO"); s != "world" {
 		t.Error("Failed simple string")
 	}
 
-	if Get("NUMBERS") != "0123456789" {
+	if s, _ := Get("NUMBERS"); s != "0123456789" {
 		t.Error("Failed numbers")
 	}
 
-	if Get("TEST5") != "hello=world" {
+	if s, _ := Get("TEST5"); s != "hello=world" {
 		t.Error("Failed more than one \"equals\"")
 	}
 
-	if Get("WITHQUOTES") != "hello world" {
+	if s, _ := Get("WITHQUOTES"); s != "hello world" {
 		t.Error("Failed with quotes")
+	}
+
+	if _, e := Get("NON_EXISTENT"); e == nil {
+		t.Error("Failed non existent")
 	}
 }
 
 func TestParseEnvDev(t *testing.T) {
 	ParseEnv(".env.development")
 
-	if Get("APP_SECRET") != "[this-is-some-app-secret]" {
+	if s, _ := Get("APP_SECRET"); s != "[this-is-some-app-secret]" {
 		t.Error("Failed with custom file name")
 	}
 }
