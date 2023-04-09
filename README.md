@@ -21,17 +21,17 @@ import (
 ```go
 func main() {
   // this function starts by parsing all environment variables to a map
+  // empty arguments will assume `.env` by default
   goenv.ParseEnv()
   // we can also pass a custom file (ie. dev mode envs)
   goenv.ParseEnv(".env.development")
 
-  // to use a variable simply call its name
-  var1 := goenv.EnvVariables["NAME"]
-
-  // goenv.EnvVariables is also a long name so we can assign it to a smaller variable
-  envs := goenv.EnvVariables
-
-  // then we can use
-  envs["NAME"]
+  // to use a variable simply get it using the Get(key) function
+  // .env -> KEY="VALUE"
+  s, err := goenv.Get("KEY")
+  if err != nil {
+    panic(err.Error())
+  }
+  println(s) // VALUE
 }
 ```
