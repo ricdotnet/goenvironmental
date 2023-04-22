@@ -38,6 +38,11 @@ func ParseEnv(args ...string) {
 	pairs := strings.Split(rawEnv, "\n")
 	for _, pair := range pairs {
 
+		// skip lines that does not follows key:value pair pattern
+		if !strings.Contains(pair, "=") {
+			continue
+		}
+
 		// strings.SplitN splits into a defined number of substrings
 		// this allows us to have '=' in our values but not in keys
 		parts := strings.SplitN(pair, "=", 2)
