@@ -38,7 +38,7 @@ func ParseEnv(args ...string) {
 	pairs := strings.Split(rawEnv, "\n")
 	for _, pair := range pairs {
 
-		// skip lines that follows key:value pair pattern
+		// skip lines that does not follows key:value pair pattern
 		if !strings.Contains(pair, "=") {
 			continue
 		}
