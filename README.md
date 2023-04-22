@@ -35,3 +35,7 @@ func main() {
   println(s) // VALUE
 }
 ```
+
+### Special thanks 🙏🏽
+
+* Thank you to [Arghya721](https://github.com/Arghya721) for fixing [issue #4](https://github.com/ricdotnet/goenvironmental/issues/3)
