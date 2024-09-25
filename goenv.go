@@ -7,8 +7,6 @@ import (
 	"strings"
 )
 
-var envVariables map[string]string
-
 // ParseEnv reads the contents from .env or other defined file
 // place the .env file on the root folder
 func ParseEnv(args ...string) {
@@ -33,7 +31,6 @@ func ParseEnv(args ...string) {
 	// generate a string from envBytes
 	// then split the content by \n into lines
 	// after we have to get key:value pairs and store in a map for later use
-	envVariables = make(map[string]string)
 	rawEnv := string(envBytes)
 	pairs := strings.Split(rawEnv, "\n")
 	for _, pair := range pairs {
@@ -53,13 +50,12 @@ func ParseEnv(args ...string) {
 			part = parts[1][1 : len(parts[1])-1]
 		}
 
-		envVariables[strings.TrimRight(parts[0], "=")] = part
+		os.Setenv(parts[0], part)
 	}
 }
 
 func Get(key string) (string, error) {
-	var value string
-	value = envVariables[key]
+	value := os.Getenv(key)
 
 	if value == "" {
 		return "", fmt.Errorf("%s does not exist", key)
