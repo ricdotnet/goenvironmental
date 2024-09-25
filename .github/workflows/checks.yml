@@ -2,7 +2,7 @@ name: "Code checkes and tests"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   static-checks:
