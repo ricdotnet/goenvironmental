@@ -24,7 +24,7 @@ func ParseEnv(args ...string) {
 	// envBytes will be the content of the .env file in bytes
 	envBytes, err := os.ReadFile(fileName)
 	if err != nil {
-		log.Fatal(err)
+		log.Default().Printf("No .env file found, using system environment variables")
 		return
 	}
 

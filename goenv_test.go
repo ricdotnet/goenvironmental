@@ -1,6 +1,7 @@
 package goenvironmental
 
 import (
+	"os"
 	"testing"
 )
 
@@ -33,5 +34,19 @@ func TestParseEnvDev(t *testing.T) {
 
 	if s, _ := Get("APP_SECRET"); s != "[this-is-some-app-secret]" {
 		t.Error("Failed with custom file name")
+	}
+}
+
+func TestNoFile(t *testing.T) {
+	ParseEnv()
+
+	os.Setenv("EXISTING_VAR", "hello_world")
+
+	if _, e := Get("EXISTING_VAR"); e != nil {
+		t.Error("Failed existing var")
+	}
+
+	if _, e := Get("NO_ENV_AVAILABLE"); e == nil {
+		t.Error("Failed no env available")
 	}
 }
